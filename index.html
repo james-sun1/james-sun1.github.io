@@ -1,77 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stock Pitch Presentation</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
+    :root {
+      --harvard-crimson: #A41034;
+      --harvard-dark: #7A0019;
+      --harvard-light: #F5F5F5;
+      --harvard-accent: #D6CFC7;
+    }
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f7fa;
-      color: #333;
-      margin: 0;
-      padding: 0;
+      background-color: var(--harvard-light);
+      color: #212529;
     }
     header {
-      background-color: #1a73e8;
-      color: white;
-      padding: 1rem 2rem;
-      text-align: center;
+      background-color: var(--harvard-crimson);
     }
-    .container {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background-color: white;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
+    h4, .text-primary {
+      color: var(--harvard-crimson) !important;
     }
-    h2 {
-      border-bottom: 2px solid #eee;
-      padding-bottom: 0.5rem;
-    }
-    .pitch {
-      margin-bottom: 2rem;
-    }
-    .pitch h3 {
-      color: #1a73e8;
+    .card {
+      border-left: 4px solid var(--harvard-crimson);
     }
     footer {
-      text-align: center;
-      padding: 1rem;
-      background-color: #eaeff5;
-      font-size: 0.9rem;
+      background-color: var(--harvard-dark);
+    }
+    .ticker {
+      background-color: #212529;
+      color: #fff;
+      overflow: hidden;
+      white-space: nowrap;
+      box-sizing: border-box;
+    }
+    .ticker-text {
+      display: inline-block;
+      padding-left: 100%;
+      animation: ticker 20s linear infinite;
+    }
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>My Stock Pitches</h1>
-  </header>
-  <div class="container">
-    <div class="pitch">
-      <h2>Company Name</h2>
-      <h3>Investment Thesis</h3>
-      <p>Brief description of why this is a strong investment opportunity.</p>
-
-      <h3>Key Metrics</h3>
-      <ul>
-        <li><strong>Market Cap:</strong> $XXB</li>
-        <li><strong>P/E Ratio:</strong> XX</li>
-        <li><strong>Revenue Growth:</strong> XX%</li>
-        <li><strong>ROE:</strong> XX%</li>
-      </ul>
-
-      <h3>Risks</h3>
-      <p>Summarize key risks and how they are mitigated.</p>
-
-      <h3>Valuation</h3>
-      <p>Justify valuation and expected return based on DCF, multiples, or comparables.</p>
+  <header class="text-white py-4 mb-0">
+    <div class="container text-center">
+      <h1 class="display-5">My Stock Pitches</h1>
     </div>
-    <!-- Duplicate .pitch for more stock presentations -->
+  </header>
+
+  <div class="ticker py-2">
+    <div class="ticker-text" id="ticker-content">
+      Loading stock data...
+    </div>
   </div>
-  <footer>
-    &copy; 2025 Your Name. All rights rpee peeserved.
+
+  <main class="container my-4">
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h2 class="card-title border-bottom pb-2">Company Name</h2>
+        <h4>Investment Thesis</h4>
+        <p class="card-text">Brief description of why this is a strong investment opportunity.</p>
+
+        <h4 class="mt-4">Key Metrics</h4>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><strong>Market Cap:</strong> $XXB</li>
+          <li class="list-group-item"><strong>P/E Ratio:</strong> XX</li>
+          <li class="list-group-item"><strong>Revenue Growth:</strong> XX%</li>
+          <li class="list-group-item"><strong>ROE:</strong> XX%</li>
+        </ul>
+
+        <h4 class="mt-4">Risks</h4>
+        <p class="card-text">Summarize key risks and how they are mitigated.</p>
+
+        <h4 class="mt-4">Valuation</h4>
+        <p class="card-text">Justify valuation and expected return based on DCF, multiples, or comparables.</p>
+      </div>
+    </div>
+    <!-- Duplicate card for more stock pitches -->
+  </main>
+
+  <footer class="text-white text-center py-3">
+    &copy; 2025 Your Name. All rights reserved.
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    async function fetchTickerData() {
+      const tickers = ['AAPL', 'GOOGL', 'AMZN', 'MSFT', 'TSLA'];
+      const responses = await Promise.all(
+        tickers.map(ticker => fetch(`https://query1.finance.yahoo.com/v7/finance/quote?symbols=${ticker}`))
+      );
+      const data = await Promise.all(responses.map(res => res.json()));
+      const tickerText = data.map(res => {
+        const quote = res.quoteResponse.result[0];
+        const change = (quote.regularMarketChangePercent >= 0 ? '+' : '') + quote.regularMarketChangePercent.toFixed(2);
+        return `${quote.symbol}: $${quote.regularMarketPrice.toFixed(2)} (${change}%)`;
+      }).join('   |    ');
+
+      document.getElementById('ticker-content').textContent = tickerText;
+    }
+
+    fetchTickerData();
+    setInterval(fetchTickerData, 60000);
+  </script>
 </body>
 </html>
