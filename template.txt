@@ -1,0 +1,12 @@
+ <!-- Example second item -->
+    <section class="item">
+      <h2 class="name">Example Project Title</h2>
+      <p class="link">
+        <a href="https://drive.google.com/..." target="_blank" rel="noopener noreferrer">
+          https://drive.google.com/...
+        </a>
+      </p>
+      <p class="date">January 20, 2026</p>
+      <p class="summary">A short description of what this is and why it matters.</p>
+      <p class="update">Update: Added final draft + supporting assets.</p>
+    </section>

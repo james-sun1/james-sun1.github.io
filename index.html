@@ -1,112 +1,185 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stock Pitch Presentation</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>James Sun</title>
   <style>
     :root {
-      --harvard-crimson: #A41034;
-      --harvard-dark: #7A0019;
-      --harvard-light: #F5F5F5;
-      --harvard-accent: #D6CFC7;
+      --max-width: 820px;
+      --text: #111;
+      --muted: #555;
+      --border: #e5e5e5;
     }
+
     body {
-      background-color: var(--harvard-light);
-      color: #212529;
+      margin: 0;
+      color: var(--text);
+      font-family: Calibri, "Segoe UI", Arial, sans-serif;
+      background: #fff;
+      line-height: 1.5;
     }
+
+    main {
+      max-width: var(--max-width);
+      margin: 48px auto;
+      padding: 0 18px;
+    }
+
     header {
-      background-color: var(--harvard-crimson);
+      margin-bottom: 28px;
     }
-    h4, .text-primary {
-      color: var(--harvard-crimson) !important;
+
+    h1 {
+      margin: 0 0 6px 0;
+      font-size: 28px;
+      font-weight: 700;
     }
-    .card {
-      border-left: 4px solid var(--harvard-crimson);
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
     }
+
+    .item {
+      padding: 18px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .item:first-of-type {
+      border-top: 1px solid var(--border);
+    }
+
+    .name {
+      margin: 0 0 6px 0;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .link {
+      margin: 0 0 6px 0;
+      font-size: 16px;
+    }
+
+    .link a {
+      color: #0b57d0;
+      text-decoration: none;
+      word-break: break-word;
+    }
+
+    .link a:hover {
+      text-decoration: underline;
+    }
+
+    .date {
+      margin: 0 0 10px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .summary {
+      margin: 0 0 10px 0;
+      font-size: 16px;
+    }
+
+    .update {
+      margin: 0;
+      font-size: 14px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
     footer {
-      background-color: var(--harvard-dark);
-    }
-    .ticker {
-      background-color: #212529;
-      color: #fff;
-      overflow: hidden;
-      white-space: nowrap;
-      box-sizing: border-box;
-    }
-    .ticker-text {
-      display: inline-block;
-      padding-left: 100%;
-      animation: ticker 20s linear infinite;
-    }
-    @keyframes ticker {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 14px;
     }
   </style>
 </head>
+
 <body>
-  <header class="text-white py-4 mb-0">
-    <div class="container text-center">
-      <h1 class="display-5">My Stock Pitches</h1>
+  <main>
+    <header>
+      <h1>James Sun</h1>
+      <p class="subtitle">Pitches, notes, personal writing, travel</p>
+    </header>
+
+    <div style="display:flex; gap:12px; align-items:center; margin: 0 0 18px 0;">
+      <p class="link" style="margin:0;">
+        <a href="https://instagram.com/_jamessun" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;">
+            <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+            <circle cx="12" cy="12" r="3"></circle>
+            <circle cx="17.5" cy="6.5" r="1"></circle>
+          </svg>
+          <span style="margin-left:8px; vertical-align:middle;">Instagram (personal)</span>
+        </a>
+      </p>
+
+<p class="link" style="margin:0;">
+        <a href="https://instagram.com/side_quest_james" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;">
+            <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+            <circle cx="12" cy="12" r="3"></circle>
+            <circle cx="17.5" cy="6.5" r="1"></circle>
+          </svg>
+          <span style="margin-left:8px; vertical-align:middle;">Instagram (travel)</span>
+        </a>
+      </p>
+
+
+      <p class="link" style="margin:0;">
+        <a href="https://linkedin.com/in/james--sun" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;">
+            <rect x="2" y="2" width="20" height="20" rx="2"></rect>
+            <path d="M7 11v6"></path>
+            <path d="M7 8v.01"></path>
+            <path d="M11 11v6"></path>
+            <path d="M11 8a2 2 0 0 1 2 2v7"></path>
+          </svg>
+          <span style="margin-left:8px; vertical-align:middle;">LinkedIn</span>
+        </a>
+      </p>
     </div>
-  </header>
 
-  <div class="ticker py-2">
-    <div class="ticker-text" id="ticker-content">
-      Loading stock data...
-    </div>
-  </div>
 
-  <main class="container my-4">
-    <div class="card shadow-sm mb-4">
-      <div class="card-body">
-        <h2 class="card-title border-bottom pb-2">Company Name</h2>
-        <h4>Investment Thesis</h4>
-        <p class="card-text">Brief description of why this is a strong investment opportunity.</p>
 
-        <h4 class="mt-4">Key Metrics</h4>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"><strong>Market Cap:</strong> $XXB</li>
-          <li class="list-group-item"><strong>P/E Ratio:</strong> XX</li>
-          <li class="list-group-item"><strong>Revenue Growth:</strong> XX%</li>
-          <li class="list-group-item"><strong>ROE:</strong> XX%</li>
-        </ul>
+    
+    <!-- ITEM / PROJECT (copy/paste this section for each new entry) -->
+    <section class="item">
+      <h2 class="name">Alpha Metallurgical Resources Stock Pitch</h2>
+      <p class="link">
+        <a href="https://www.dropbox.com/scl/fi/vbpeh08xzrpthkhq1oyiz/Team-QLW.PowerPoint.pdf?rlkey=ku9l3y22cburywnhp5xbauqe4&st=rdyzk36p&dl=0" target="_blank" rel="noopener noreferrer">
+          $AMR Stock Pitch Presentation
+        </a>
+      </p>
+      <p class="date">November 3, 2025</p>
+      <p class="summary">Pitched with Joe O'Grady and Watson Meyer; PT: ~$330</p>
+      <p class="update">Price on 11/3/25: $173.26 | Price as of 1/20/26: $232.87 (34% gain)</p>
+    </section>
 
-        <h4 class="mt-4">Risks</h4>
-        <p class="card-text">Summarize key risks and how they are mitigated.</p>
 
-        <h4 class="mt-4">Valuation</h4>
-        <p class="card-text">Justify valuation and expected return based on DCF, multiples, or comparables.</p>
-      </div>
-    </div>
-    <!-- Duplicate card for more stock pitches -->
+<hr>
+
+<h1>Fun stuff:</h1>
+
+      <h2 class="name">Where I've Traveled</h2>
+
+    <div style="max-width:980px;margin:5px auto 10px auto;font-size:14px;"><div style="position:relative;padding: 0 0 67% 0;height:0;overflow:hidden;"><iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="//www.fla-shop.com/visited-countries/embed/?st=AE%2CAL%2CAM%2CAR%2CAT%2CAU%2CAZ%2CBA%2CBE%2CBG%2CBR%2CBS%2CBW%2CCA%2CCH%2CCN%2CCO%2CCR%2CCU%2CCZ%2CDE%2CDK%2CEC%2CEE%2CEG%2CES%2CFI%2CFR%2CGB%2CGE%2CGR%2CHR%2CHU%2CID%2CIE%2CIL%2CIN%2CIS%2CIT%2CJO%2CJP%2CKG%2CKH%2CKR%2CKZ%2CLI%2CLV%2CMA%2CMC%2CMD%2CME%2CMK%2CMT%2CMX%2CMY%2CNA%2CNL%2CNO%2CNZ%2CPE%2CPL%2CPS%2CPT%2CQA%2CRO%2CRS%2CRU%2CSA%2CSE%2CSG%2CSK%2CTH%2CTJ%2CTN%2CTR%2CTW%2CTZ%2CUA%2CUS%2CUZ%2CVA%2CVN%2CXK%2CZA%2CZW&vc=1ca032&uc=b3c3ca&hc=40bfa6&bc=ffffff&ss=on" frameborder="0" scrolling="no"></iframe></div></a></div>
+   
+
+
+
+    <footer>
+      © <span id="year"></span> James Sun
+    </footer>
   </main>
 
-  <footer class="text-white text-center py-3">
-    &copy; 2025 Your Name. All rights reserved.
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    async function fetchTickerData() {
-      const tickers = ['AAPL', 'GOOGL', 'AMZN', 'MSFT', 'TSLA'];
-      const responses = await Promise.all(
-        tickers.map(ticker => fetch(`https://query1.finance.yahoo.com/v7/finance/quote?symbols=${ticker}`))
-      );
-      const data = await Promise.all(responses.map(res => res.json()));
-      const tickerText = data.map(res => {
-        const quote = res.quoteResponse.result[0];
-        const change = (quote.regularMarketChangePercent >= 0 ? '+' : '') + quote.regularMarketChangePercent.toFixed(2);
-        return `${quote.symbol}: $${quote.regularMarketPrice.toFixed(2)} (${change}%)`;
-      }).join('   |    ');
-
-      document.getElementById('ticker-content').textContent = tickerText;
-    }
-
-    fetchTickerData();
-    setInterval(fetchTickerData, 60000);
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
