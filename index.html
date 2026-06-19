@@ -6,34 +6,34 @@
   <title>James Sun</title>
   
   <!-- SEO Meta Tags -->
-  <meta name="description" content="Portfolio of James Sun, a sophomore at Harvard University double concentrating in Slavic Languages and Literatures and Economics." />
+  <meta name="description" content="Portfolio of James Sun, a sophomore at Harvard University studying Slavic Languages and Economics." />
   <meta name="keywords" content="James Sun, Harvard, Slavic Languages, Economics, Finance, Equity Research" />
   <meta name="author" content="James Sun" />
 
-  <!-- Fonts: Helvetica -->
   <style>
     :root {
-      /* Minimalist Editorial Palette - Light Mode */
-      --bg: #ffffff;
-      --text: #1a1a1a;
-      --text-muted: #666666;
+      /* Swiss Design Grid Palette - Light Mode */
+      --bg: #f9f9f9;
+      --text: #000000;
+      --text-muted: #555555;
       --accent: #A51C30; /* Harvard Crimson */
-      --border: #eaeaea;
-      --hover-bg: #f8f9fa;
+      --border: #000000;
+      --border-light: #e0e0e0;
+      --card-bg: #ffffff;
       
-      --font-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
       --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
       
-      transition: background-color 0.3s ease, color 0.3s ease;
+      transition: background-color 0.3s steps(1), color 0.3s steps(1);
     }
 
     [data-theme="dark"] {
-      /* Minimalist Editorial Palette - Dark Mode */
-      --bg: #0d0f14;
-      --text: #f1f5f9;
-      --text-muted: #8e9cae;
-      --border: #1f242e;
-      --hover-bg: #151821;
+      /* Swiss Design Grid Palette - Dark Mode */
+      --bg: #0c0d0e;
+      --text: #ffffff;
+      --text-muted: #aaaaaa;
+      --border: #ffffff;
+      --border-light: #222222;
+      --card-bg: #121315;
     }
 
     * {
@@ -46,59 +46,92 @@
       background-color: var(--bg);
       color: var(--text);
       font-family: var(--font-sans);
-      line-height: 1.62;
+      line-height: 1.5;
       -webkit-font-smoothing: antialiased;
+      letter-spacing: -0.02em;
     }
 
-    /* Container setup for a focused, readable layout */
-    .wrapper {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 60px 24px 80px 24px;
+    /* Swiss Layout Grid Wrapper */
+    .container {
+      display: grid;
+      grid-template-columns: 1fr;
+      min-height: 100vh;
     }
 
-    /* Header Section */
-    .header-top {
+    @media (min-width: 992px) {
+      .container {
+        grid-template-columns: 320px 1fr;
+      }
+    }
+
+    /* Left Sidebar: Branding, Quick Navigation, Meta Details */
+    .sidebar {
+      padding: 40px 24px;
+      border-bottom: 2px solid var(--border);
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
-      align-items: center;
-      margin-bottom: 48px;
+      gap: 40px;
     }
 
-    .brand {
-      font-family: var(--font-serif);
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
+    @media (min-width: 992px) {
+      .sidebar {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        border-bottom: none;
+        border-right: 2px solid var(--border);
+        padding: 60px 40px;
+      }
+    }
+
+    .brand-section {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .logo-text {
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 0.9;
+      text-transform: uppercase;
+      letter-spacing: -0.05em;
       color: var(--text);
       text-decoration: none;
+      display: inline-block;
     }
 
-    /* Minimal Theme Toggle */
+    .logo-text span {
+      color: var(--accent);
+    }
+
+    /* Minimal Theme Toggle (Swiss Style square button) */
     .theme-toggle {
       background: none;
-      border: none;
-      color: var(--text-muted);
+      border: 1px solid var(--border);
+      color: var(--text);
       cursor: pointer;
-      padding: 6px;
+      width: 32px;
+      height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: color 0.2s ease;
+      transition: background-color 0.2s, color 0.2s;
+      margin-top: 8px;
     }
 
     .theme-toggle:hover {
-      color: var(--text);
+      background-color: var(--text);
+      color: var(--bg);
     }
 
     .theme-toggle svg {
-      width: 18px;
-      height: 18px;
+      width: 14px;
+      height: 14px;
       fill: none;
       stroke: currentColor;
       stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
     }
 
     .theme-toggle .sun-icon {
@@ -112,192 +145,266 @@
       display: none;
     }
 
-    /* Hero Bio Info */
-    .hero-title {
-      font-family: var(--font-serif);
-      font-size: 32px;
-      line-height: 1.25;
-      font-weight: 400;
-      margin: 0 0 24px 0;
-      letter-spacing: -0.5px;
+    /* Meta stats / Info lines */
+    .meta-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      border-top: 1px solid var(--border-light);
+      padding-top: 24px;
     }
 
-    @media (min-width: 576px) {
-      .hero-title {
-        font-size: 38px;
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .meta-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+    }
+
+    .meta-value {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    /* Sidebar footer contacts */
+    .sidebar-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-top: 1px solid var(--border-light);
+      padding-top: 24px;
+    }
+
+    .contact-link {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .contact-link:hover {
+      color: var(--accent);
+    }
+
+    /* Right Main Content Panel */
+    .main-content {
+      padding: 40px 24px;
+    }
+
+    @media (min-width: 992px) {
+      .main-content {
+        padding: 60px 80px;
+        max-width: 900px;
       }
     }
 
-    .bio {
-      font-size: 16px;
-      color: var(--text-muted);
+    /* Hero Bio section */
+    .hero-intro {
+      margin-bottom: 60px;
+    }
+
+    .hero-headline {
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
       margin: 0 0 24px 0;
+      text-transform: uppercase;
     }
 
-    .contact-links {
+    @media (min-width: 768px) {
+      .hero-headline {
+        font-size: 48px;
+      }
+    }
+
+    .bio-body {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0;
+    }
+
+    /* Visual Divider */
+    .divider {
+      height: 2px;
+      background-color: var(--border);
+      margin: 48px 0;
+    }
+
+    .divider-light {
+      height: 1px;
+      background-color: var(--border-light);
+      margin: 24px 0;
+    }
+
+    /* Section Headers (Swiss Typographic style) */
+    .section-header {
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 12px;
-      font-size: 14px;
-      font-weight: 500;
-      margin-bottom: 56px;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 32px;
     }
 
-    .contact-links a {
-      color: var(--text);
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-
-    .contact-links a:hover {
-      color: var(--accent);
-      text-decoration: underline;
-    }
-
-    .separator {
-      color: var(--border);
-    }
-
-    /* Content Sections */
     .section-title {
-      font-family: var(--font-serif);
-      font-size: 22px;
-      font-weight: 600;
-      margin: 48px 0 24px 0;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border);
+      font-size: 24px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      margin: 0;
     }
 
-    /* Minimal Filter Bar */
+    .section-number {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* Minimal Filter Tabs (Horizontal layout with dividers) */
     .filter-bar {
       display: flex;
-      gap: 20px;
+      flex-wrap: wrap;
+      gap: 16px;
       margin-bottom: 32px;
-      overflow-x: auto;
-      padding-bottom: 4px;
     }
 
     .filter-btn {
       background: none;
-      border: none;
+      border: 1px solid var(--border-light);
       color: var(--text-muted);
       font-family: var(--font-sans);
-      font-size: 14px;
-      font-weight: 500;
-      padding: 0;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 6px 12px;
       cursor: pointer;
-      transition: color 0.2s ease;
-      position: relative;
+      transition: all 0.2s steps(1);
     }
 
     .filter-btn:hover {
+      border-color: var(--border);
       color: var(--text);
     }
 
     .filter-btn.active {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .filter-btn.active::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 0;
-      right: 0;
-      height: 2px;
       background-color: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
     }
 
-    /* Portfolio Items List */
-    .items-list {
+    /* Writings List Stack */
+    .items-stack {
       display: flex;
       flex-direction: column;
-      gap: 36px;
     }
 
     .portfolio-item {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border-light);
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 12px;
     }
 
-    .item-header {
+    .portfolio-item:first-of-type {
+      border-top: 1px solid var(--border-light);
+    }
+
+    .item-meta-row {
       display: flex;
-      flex-direction: column;
       justify-content: space-between;
-      align-items: flex-start;
-      gap: 4px;
+      align-items: center;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
-    @media (min-width: 576px) {
-      .item-header {
-        flex-direction: row;
-        align-items: baseline;
-      }
-    }
-
-    .item-name {
-      font-family: var(--font-serif);
-      font-size: 20px;
-      font-weight: 600;
-      margin: 0;
+    .item-category {
+      color: var(--accent);
     }
 
     .item-date {
-      font-size: 13px;
       color: var(--text-muted);
-      white-space: nowrap;
+    }
+
+    .item-name {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin: 0;
+      letter-spacing: -0.03em;
     }
 
     .item-summary {
       font-size: 15px;
+      line-height: 1.5;
       color: var(--text-muted);
-      margin: 4px 0 8px 0;
-      line-height: 1.6;
+      margin: 0;
     }
 
-    .item-footer {
+    .item-action-row {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: 16px;
-      font-size: 14px;
+      margin-top: 4px;
     }
 
     .item-link {
-      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
       text-decoration: none;
-      font-weight: 600;
+      text-transform: uppercase;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+      display: inline-block;
     }
 
     .item-link:hover {
-      text-decoration: underline;
+      color: var(--accent);
+      border-bottom-color: var(--text);
     }
 
     .stock-badge {
-      font-size: 12px;
+      font-size: 11px;
+      font-weight: 700;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-light);
+      padding: 3px 8px;
       color: var(--text-muted);
-      background-color: var(--hover-bg);
-      border: 1px solid var(--border);
-      padding: 2px 8px;
-      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
     }
 
-    /* Travel Section Map styling */
-    .map-container {
+    /* Travel Map container details */
+    .map-wrapper {
+      border: 2px solid var(--border);
+      background-color: #ffffff;
       position: relative;
       width: 100%;
-      padding-bottom: 67%; /* Aspect Ratio 3:2 */
+      padding-bottom: 62.5%; /* 16:10 aspect */
       height: 0;
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background-color: #fff;
     }
 
-    .map-container iframe {
+    .map-wrapper iframe {
       position: absolute;
       top: 0;
       left: 0;
@@ -306,16 +413,19 @@
       border: 0;
     }
 
-    /* Footer Details */
-    footer {
-      margin-top: 80px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
-      font-size: 13px;
-      color: var(--text-muted);
+    /* Footer */
+    .footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-top: 80px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-light);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
     }
 
     .back-to-top {
@@ -324,115 +434,157 @@
       color: var(--text-muted);
       cursor: pointer;
       font-family: var(--font-sans);
-      font-size: 13px;
-      transition: color 0.2s ease;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0;
     }
 
     .back-to-top:hover {
       color: var(--text);
-      text-decoration: underline;
     }
   </style>
 </head>
 
 <body>
-  <div class="wrapper">
+  <div class="container">
     
-    <!-- Header Top Navigation -->
-    <header class="header-top">
-      <a href="#" class="brand">James Sun</a>
-      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
-        <!-- Sun Icon -->
-        <svg class="sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-        <!-- Moon Icon -->
-        <svg class="moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-      </button>
-    </header>
-
-    <!-- Bio introduction -->
-    <main>
-      <h1 class="hero-title">Sophomore at Harvard double concentrating in Slavic Languages &amp; Literatures and Economics.</h1>
-      
-      <p class="bio">
-        Hi! I'm James. I'm fascinated by all things finance, classical music, and travel related—suffice it to say, I'm someone interested in a multitude of fields! Here I plan to post my personal writing, investment research, travel logs, or anything else that crosses my mind. It's still a work in progress, but my goal is to store everything in one place.
-      </p>
-
-      <div class="contact-links">
-        <a href="https://instagram.com/_jamessun" target="_blank" rel="noopener noreferrer">Instagram (personal)</a>
-        <span class="separator">•</span>
-        <a href="https://instagram.com/side_quest_james" target="_blank" rel="noopener noreferrer">Instagram (travel)</a>
-        <span class="separator">•</span>
-        <a href="https://linkedin.com/in/james--sun" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      </div>
-
-      <!-- Writings & Research Listings -->
-      <h2 class="section-title">Writings &amp; Research</h2>
-      
-      <!-- Minimal Category Filtering -->
-      <div class="filter-bar">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="finance">Finance</button>
-        <button class="filter-btn" data-filter="travel">Travel</button>
-        <button class="filter-btn" data-filter="academic">Academics</button>
-      </div>
-
-      <!-- Entries List -->
-      <div class="items-list" id="portfolio-items">
+    <!-- LEFT SIDEBAR: Rigid Swiss branding/navigation panel -->
+    <aside class="sidebar">
+      <div class="brand-section">
+        <a href="#" class="logo-text">JAMES<br><span>SUN</span></a>
         
-        <!-- Entry 1: Stock Pitch -->
-        <article class="portfolio-item" data-category="finance">
-          <div class="item-header">
-            <h3 class="item-name">Alpha Metallurgical Resources Stock Pitch</h3>
-            <span class="item-date">November 3, 2025</span>
-          </div>
-          <p class="item-summary">
-            I pitched Alpha Metallurgical Resources alongside my good friends Joe O'Grady and Watson Meyer. This pitch is predicated on a stronger-than-predicted demand for met coal from Asia, particularly India, as an input for steel production. As one of the largest producers of met coal in the United States with zero debt on its balance sheet, AMR stands fundamentally sound in an era of reindustrialization, positioning it as an excellent investment opportunity. Full pitch deck is in the link below.
-          </p>
-          <div class="item-footer">
-            <a href="https://www.dropbox.com/scl/fi/vbpeh08xzrpthkhq1oyiz/Team-QLW.PowerPoint.pdf?rlkey=ku9l3y22cburywnhp5xbauqe4&st=rdyzk36p&dl=0" target="_blank" rel="noopener noreferrer" class="item-link">
-              View Presentation deck ↗
-            </a>
-            <span class="stock-badge">NYSE: AMR ($173.26 → $232.87, +34.4% gain)</span>
-          </div>
-        </article>
-
-        <!-- TEMPLATE SECTION FOR FUTURE ITEMS (Copy/paste to add items) -->
-        <!--
-        <article class="portfolio-item" data-category="finance|travel|academic">
-          <div class="item-header">
-            <h3 class="item-name">Project Title</h3>
-            <span class="item-date">Date Here</span>
-          </div>
-          <p class="item-summary">A short description of what this is and why it matters.</p>
-          <div class="item-footer">
-            <a href="#" target="_blank" rel="noopener noreferrer" class="item-link">Link Text ↗</a>
-          </div>
-        </article>
-        -->
-
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
+          <!-- Sun Icon -->
+          <svg class="sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <!-- Moon Icon -->
+          <svg class="moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
       </div>
 
-      <!-- Travel Map Section -->
-      <h2 class="section-title">Where I've Traveled</h2>
-      <p class="bio" style="margin-bottom: 20px;">
-        A visual journal of the 85 countries and territories I have visited. From roadtrips across the Caucasus to train travels in Central Asia, I enjoy exploring diverse history, architecture, and routes.
-      </p>
+      <!-- Quick meta definitions list -->
+      <div class="meta-list">
+        <div class="meta-item">
+          <span class="meta-label">Affiliation</span>
+          <span class="meta-value">Harvard University</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Concentration</span>
+          <span class="meta-value">Slavic &amp; Economics</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Focus Area</span>
+          <span class="meta-value">Equities Research</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Exploration</span>
+          <span class="meta-value">85 Countries Visited</span>
+        </div>
+      </div>
+
+      <!-- Contact Directory -->
+      <div class="sidebar-footer">
+        <a href="https://instagram.com/_jamessun" target="_blank" rel="noopener noreferrer" class="contact-link">Instagram (pers)</a>
+        <a href="https://instagram.com/side_quest_james" target="_blank" rel="noopener noreferrer" class="contact-link">Instagram (trav)</a>
+        <a href="https://linkedin.com/in/james--sun" target="_blank" rel="noopener noreferrer" class="contact-link">LinkedIn</a>
+      </div>
+    </aside>
+
+    <!-- RIGHT MAIN PANEL: Typography structure -->
+    <main class="main-content">
       
-      <div class="map-container">
-        <iframe src="//www.fla-shop.com/visited-countries/embed/?st=AE%2CAL%2CAM%2CAR%2CAT%2CAU%2CAZ%2CBA%2CBE%2CBG%2CBR%2CBS%2CBW%2CCA%2CCH%2CCN%2CCO%2CCR%2CCU%2CCZ%2CDE%2CDK%2CEC%2CEE%2CEG%2CES%2CFI%2CFR%2CGB%2CGE%2CGR%2CHR%2CHU%2CID%2CIE%2CIL%2CIN%2CIS%2CIT%2CJO%2CJP%2CKG%2CKH%2CKR%2CKZ%2CLI%2CLV%2CMA%2CMC%2CMD%2CME%2CMK%2CMT%2CMX%2CMY%2CNA%2CNL%2CNO%2CNZ%2CPE%2CPL%2CPS%2CPT%2CQA%2CRO%2CRS%2CRU%2CSA%2CSE%2CSG%2CSK%2CTH%2CTJ%2CTN%2CTR%2CTW%2CTZ%2CUA%2CUS%2CUZ%2CVA%2CVN%2CXK%2CZA%2CZW&vc=1ca032&uc=b3c3ca&hc=40bfa6&bc=ffffff&ss=on" scrolling="no" title="James' Visited Countries Map"></iframe>
-      </div>
+      <!-- Hero Intro block -->
+      <section class="hero-intro">
+        <h1 class="hero-headline">Sophomore at Harvard double concentrating in Slavic Languages and Literatures and Economics.</h1>
+        <p class="bio-body">
+          Hi! I'm James. I'm fascinated by all things finance, classical music, and travel related—suffice it to say, I'm someone interested in a multitude of fields! Here I plan to post my personal writing, investment research, travel logs, or anything else that crosses my mind. It's still a work in progress, but my goal is to store everything in one place.
+        </p>
+      </section>
 
+      <div class="divider"></div>
+
+      <!-- Writings & Projects Directory -->
+      <section>
+        <div class="section-header">
+          <h2 class="section-title">Writings &amp; Research</h2>
+          <span class="section-number">INDEX // 01</span>
+        </div>
+
+        <!-- Filter bar -->
+        <div class="filter-bar">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="finance">Finance</button>
+          <button class="filter-btn" data-filter="travel">Travel</button>
+          <button class="filter-btn" data-filter="academic">Academics</button>
+        </div>
+
+        <!-- Entries list stack -->
+        <div class="items-stack" id="portfolio-items">
+          
+          <!-- Entry 1: Stock Pitch -->
+          <article class="portfolio-item" data-category="finance">
+            <div class="item-meta-row">
+              <span class="item-category">Equity Research</span>
+              <span class="item-date">03 NOV 2025</span>
+            </div>
+            <h3 class="item-name">ALPHA METALLURGICAL RESOURCES STOCK PITCH</h3>
+            <p class="item-summary">
+              I pitched Alpha Metallurgical Resources alongside my good friends Joe O'Grady and Watson Meyer. This pitch is predicated on a stronger-than-predicted demand for met coal from Asia, particularly India, as an input for steel production. As one of the largest producers of met coal in the United States with zero debt on its balance sheet, AMR stands fundamentally sound in an era of reindustrialization, positioning it as an excellent investment opportunity. Full pitch deck is in the link below.
+            </p>
+            <div class="item-action-row">
+              <a href="https://www.dropbox.com/scl/fi/vbpeh08xzrpthkhq1oyiz/Team-QLW.PowerPoint.pdf?rlkey=ku9l3y22cburywnhp5xbauqe4&st=rdyzk36p&dl=0" target="_blank" rel="noopener noreferrer" class="item-link">
+                View Presentation deck ↗
+              </a>
+              <span class="stock-badge">NYSE: AMR // $173.26 → $232.87 (+34.4% gain)</span>
+            </div>
+          </article>
+
+          <!-- TEMPLATE SECTION FOR FUTURE ITEMS (Copy/paste to add items) -->
+          <!--
+          <article class="portfolio-item" data-category="finance|travel|academic">
+            <div class="item-meta-row">
+              <span class="item-category">Category here</span>
+              <span class="item-date">Date here</span>
+            </div>
+            <h3 class="item-name">PROJECT TITLE IN UPPERCASE</h3>
+            <p class="item-summary">A short description of what this is and why it matters.</p>
+            <div class="item-action-row">
+              <a href="#" target="_blank" rel="noopener noreferrer" class="item-link">Link action ↗</a>
+            </div>
+          </article>
+          -->
+
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- Travel Section -->
+      <section style="margin-bottom: 40px;">
+        <div class="section-header">
+          <h2 class="section-title">Where I've Traveled</h2>
+          <span class="section-number">INDEX // 02</span>
+        </div>
+        <p class="bio-body" style="margin-bottom: 24px;">
+          A visual record of the 85 countries and territories I have visited. From roadtrips across the Caucasus to train travels in Central Asia, I enjoy exploring diverse history, architecture, and geography.
+        </p>
+        
+        <div class="map-wrapper">
+          <iframe src="//www.fla-shop.com/visited-countries/embed/?st=AE%2CAL%2CAM%2CAR%2CAT%2CAU%2CAZ%2CBA%2CBE%2CBG%2CBR%2CBS%2CBW%2CCA%2CCH%2CCN%2CCO%2CCR%2CCU%2CCZ%2CDE%2CDK%2CEC%2CEE%2CEG%2CES%2CFI%2CFR%2CGB%2CGE%2CGR%2CHR%2CHU%2CID%2CIE%2CIL%2CIN%2CIS%2CIT%2CJO%2CJP%2CKG%2CKH%2CKR%2CKZ%2CLI%2CLV%2CMA%2CMC%2CMD%2CME%2CMK%2CMT%2CMX%2CMY%2CNA%2CNL%2CNO%2CNZ%2CPE%2CPL%2CPS%2CPT%2CQA%2CRO%2CRS%2CRU%2CSA%2CSE%2CSG%2CSK%2CTH%2CTJ%2CTN%2CTR%2CTW%2CTZ%2CUA%2CUS%2CUZ%2CVA%2CVN%2CXK%2CZA%2CZW&vc=1ca032&uc=b3c3ca&hc=40bfa6&bc=ffffff&ss=on" scrolling="no" title="James' Visited Countries Map"></iframe>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <span>© <span id="year"></span> James Sun</span>
+        <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">Back to top</button>
+      </footer>
     </main>
 
-    <!-- Footer -->
-    <footer>
-      <span>© <span id="year"></span> James Sun</span>
-      <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">Back to top</button>
-    </footer>
   </div>
 
   <script>
-    // Theme toggle logic
+    // Theme toggle logic (Swiss solid state transitions)
     const themeToggleBtn = document.getElementById('theme-toggle');
     const savedTheme = localStorage.getItem('theme');
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -454,7 +606,7 @@
       }
     });
 
-    // Category filter logic
+    // Category filter logic (Swiss responsive item hiding)
     const filterButtons = document.querySelectorAll('.filter-btn');
     const portfolioItems = document.querySelectorAll('.portfolio-item');
 
